@@ -4,12 +4,14 @@
 #include <string>
 using namespace std;
 
+// define BST node
 struct Node {
-    int key;
-    string value;
+    int key; 
+    string value; 
     Node* left;
     Node* right;
 
+    //constructor
     Node(int k, string val) : key(k), value(val), left(nullptr), right(nullptr) {}
 };
 
@@ -17,18 +19,18 @@ class BST {
 private:
     Node* root;
 
-    void inorder(Node* node);
-    Node* insert(Node* node, int key, string value, bool& success);
-    Node* remove(Node* node, int key, bool& success);
-    Node* findMin(Node* node);
+    void inorder(Node* node);  //recrusive 
+    Node* insert(Node* node, int key, string value, bool& success); //insert recrusive 
+    Node* remove(Node* node, int key, bool& success); //remove recrusive
+    Node* findMin(Node* node); //find minimum key node
 
 public:
-    BST();
-    ~BST();
-    bool insert(int key, string value);
-    bool remove(int key);
+    BST(); //constructor
+    ~BST(); //destructor
+    bool insert(int key, string value); //insert
+    bool remove(int key); //remove, success -> true, 
     void inorder();
-    void clear(Node* node);
+    void clear(Node* node); //remove all node
 };
 
 #endif
