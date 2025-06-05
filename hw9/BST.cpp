@@ -20,7 +20,10 @@ void BST::clear(Node* node) {
     }
 }
 
-//public functions to call insert functions
+//C++'s std::string has overloaded comparison operators such as <, >, ==, !=, etc., so it can be compared dictionary
+
+
+//public functions to call insert private functions
 void BST::insert(const string& key, const string& value) { 
     root = insert(root, key, value); 
 }
@@ -28,9 +31,9 @@ void BST::insert(const string& key, const string& value) {
 Node* BST::insert(Node* node, const string& key, const string& value) {
     if (!node) return new Node(key, value);
     if (key < node->key)
-        node->left = insert(node->left, key, value); // key < node -> key left
+        node->left = insert(node->left, key, value); // key < node -> move to key left
     else if (key > node->key)
-        node->right = insert(node->right, key, value); //key > node -> key -> right
+        node->right = insert(node->right, key, value); //key > node -> move to key  right
     return node; // key == node->key → duplicate
 }
 

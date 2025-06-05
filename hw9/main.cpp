@@ -6,19 +6,21 @@
 
 using namespace std;
 
-// 단어 추출 보조 함수 (단어+구두점 분리 유지)
+//divide punctuation from word and save it in punct
 string stripPunctuation(const string& word, string& punct) {
-    int len = word.length();
-    int i = len - 1;
-    while (i >= 0 && ispunct(word[i])) {
-        punct = word[i] + punct;
-        i--;
+    int i;
+    for (i = word.length() - 1; i >= 0; --i) {
+        if (ispunct(word[i]))
+            punct = word[i] + punct;  
+        else
+            break; 
     }
     return word.substr(0, i + 1);
 }
 
 int main() {
-    //1. input file
+
+    //1. input file name
     string textFileName, mapFileName;
     cout << "Enter text file name: ";
     cin >> textFileName;
@@ -27,8 +29,9 @@ int main() {
 
     BST bst;
 
-    // 2. 맵 파일 로딩 및 BST 구성
+    // 2. Read Map file, insert key:value
     ifstream mapFile(mapFileName);
+
     if (!mapFile) {
         cerr << "Cannot open map file." << endl;
         return 1;
@@ -36,21 +39,23 @@ int main() {
 
     string line;
     while (getline(mapFile, line)) {
-        size_t colon = line.find(':');
-        if (colon != string::npos) {
+        size_t colon = line.find(':'); //find(':') returns the index of the first occurrence of the ':' character in the string.
+        if (colon != string::npos) { //npos The character you are looking for is not in the string
             string key = line.substr(0, colon);
             string value = line.substr(colon + 1);
             // Trim spaces
-            key.erase(0, key.find_first_not_of(" \t"));
-            key.erase(key.find_last_not_of(" \t") + 1);
+            key.erase(0, key.find_first_not_of(" \t")); //key.find_first_not_of(" \t") → " " or "\t" return first index of char
+            key.erase(key.find_last_not_of(" \t") + 1); //erase : remove part of string
             value.erase(0, value.find_first_not_of(" \t"));
             value.erase(value.find_last_not_of(" \t") + 1);
+            //insert BST
             bst.insert(key, value);
         }
     }
     mapFile.close();
 
-    // 3. 텍스트 파일 읽고 바꿔서 출력
+    // 3. read textfile and print
+
     ifstream textFile(textFileName);
     if (!textFile) {
         cerr << "Cannot open text file." << endl;
@@ -60,10 +65,10 @@ int main() {
     while (getline(textFile, line)) {
         istringstream iss(line);
         string word;
-        while (iss >> word) {
+        while (iss >> word) { //iss >> word -> save word divide into space, tab, \n
             string punct = "";
-            string pure = stripPunctuation(word, punct);
-            string replacement = bst.find(pure);
+            string pure = stripPunctuation(word, punct); //save pure word without and punct
+            string replacement = bst.find(pure); // if there is value return true
             if (!replacement.empty())
                 cout << replacement << punct << " ";
             else

@@ -10,6 +10,7 @@ struct Node {
     Node* left;
     Node* right;
 
+    //constructor && initialize
     Node(string k, string v)
         : key(k), value(v), left(nullptr), right(nullptr) {}
 };
@@ -19,7 +20,7 @@ private:
     Node* root;
 
     Node* insert(Node* node, const string& key, const string& value); //insert function
-    string find(Node* node, const string& key) const; //find key in node, if not return ""
+    string find(Node* node, const string& key) const; //find key in node, if no return ""
     void clear(Node* node); //allocate memory
 
 public:
