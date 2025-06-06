@@ -1,0 +1,10 @@
+daniel cho;20041005;danielcho@handong.ac.kr;010-3939-1111
+eunbi lee;20031218;eunbi@handong.ac.kr;010-2929-2929
+hana lim;20040101;hana@handong.ac.kr;010-1234-5678
+hyun woo;20030811;hwoo@handong.ac.kr;010-7231-9973
+jinho jang;20030609;jinho@handong.ac.kr;010-8888-7777
+minji park;20040322;minji@handong.ac.kr;010-8734-1256
+okto;20050914;okto@handong.ac.kr;010-9347-1086
+soyoung kim;20050730;soyoung@handong.ac.kr;010-4455-8888
+sungjae park;20060228;sungjae@handong.ac.kr;010-1111-3333
+yeji song;20050412;yeji@handong.ac.kr;010-5555-6666
